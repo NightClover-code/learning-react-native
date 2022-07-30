@@ -1,43 +1,49 @@
-import { useState } from 'react';
-import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
-  const [counter, setCounter] = useState<number>(0);
-
-  const onClickHandler = () => {
-    setCounter(counter + 5);
-  };
-
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{counter}</Text>
-      <TouchableOpacity style={styles.button} onPress={onClickHandler}>
-        <Text style={styles.text}>cac</Text>
-      </TouchableOpacity>
-      <Text style={styles.text}>You clicked {counter} times</Text>
+      <View style={styles.box1}>
+        <Text style={styles.text}>1</Text>
+      </View>
+      <View style={styles.box2}>
+        <Text style={styles.text}>2</Text>
+      </View>
+      <View style={styles.box3}>
+        <Text style={styles.text}>3</Text>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    height: '50%',
-    borderColor: '#000',
-    borderWidth: 1,
-    backgroundColor: '#eee',
-    alignItems: 'center',
+    flex: 1,
+    alignItems: 'stretch',
     justifyContent: 'center',
+    backgroundColor: '#eee',
   },
   text: {
     color: '#000',
-    fontSize: 20,
-    textAlign: 'center',
     margin: 10,
+    fontSize: 20,
   },
-  button: {
-    width: 200,
+  box1: {
+    flex: 1,
+    backgroundColor: 'red',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  box2: {
+    flex: 1,
+    backgroundColor: 'blue',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  box3: {
+    flex: 1,
     backgroundColor: 'orange',
-    borderRadius: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
