@@ -5,6 +5,7 @@ import {
   RefreshControl,
   SafeAreaView,
   ScrollView,
+  SectionList,
   StyleSheet,
   Text,
   View,
@@ -12,6 +13,11 @@ import {
 
 interface Item {
   name: string;
+}
+
+interface Person {
+  name: string;
+  data: string[];
 }
 
 export default function App() {
@@ -22,28 +28,40 @@ export default function App() {
     { name: 'box 4' },
     { name: 'box 5' },
   ]);
+  const [people, setPeople] = useState<Person[]>([
+    { name: 'John Doe', data: ['football, basketball'] },
+    { name: 'Max Ele', data: ['football, tennis'] },
+    { name: 'Adhan Omar', data: ['football, swimming'] },
+    { name: 'Lerre Sonia', data: ['football, baseball'] },
+  ]);
+
   const [loading, setLoading] = useState(false);
   const [counter, setCounter] = useState<number>(items.length + 1);
 
   const onListRefresh = () => {
     setLoading(true);
-    setCounter(counter + 1);
-    setItems([...items, { name: `box ${counter}` }]);
+    // setCounter(counter + 1);
+    // setItems([...items, { name: `box ${counter}` }]);
     setLoading(false);
   };
 
   return (
     <SafeAreaView>
       <StatusBar style="auto" />
-      <FlatList
+      <SectionList
         style={{ marginTop: 20 }}
         keyExtractor={(el, i) => i.toString()}
-        data={items}
+        sections={people}
         refreshing={loading}
         onRefresh={onListRefresh}
         renderItem={({ item }) => (
           <View style={styles.box}>
-            <Text>{item.name}</Text>
+            <Text>{item}</Text>
+          </View>
+        )}
+        renderSectionHeader={({ section }) => (
+          <View style={styles.header}>
+            <Text>{section.name}</Text>
           </View>
         )}
       />
@@ -55,6 +73,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#eee',
+  },
+  header: {
+    height: 100,
+    backgroundColor: 'cyan',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 10,
   },
   text: {
     color: '#000',
