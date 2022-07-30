@@ -1,8 +1,8 @@
-import { Button, Linking, StyleSheet, Text, View } from 'react-native';
-import AdvancedList from './features/AdvancedList';
+import { StyleSheet } from 'react-native';
+import Input from './features/Input';
 
 export default function App() {
-  return <AdvancedList />;
+  return <Input />;
 }
 
 const styles = StyleSheet.create({
