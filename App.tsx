@@ -1,15 +1,8 @@
 import { Button, Linking, StyleSheet, Text, View } from 'react-native';
+import AdvancedList from './features/AdvancedList';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Hello world!</Text>
-      <Button
-        title="Visit achraf website"
-        onPress={() => Linking.openURL('https://achrafdev.com')}
-      />
-    </View>
-  );
+  return <AdvancedList />;
 }
 
 const styles = StyleSheet.create({
