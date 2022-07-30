@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {
+  FlatList,
   RefreshControl,
   ScrollView,
   StyleSheet,
@@ -7,35 +8,47 @@ import {
   View,
 } from 'react-native';
 
+interface Item {
+  name: string;
+}
+
 export default function App() {
-  const [items, setItems] = useState([
-    { key: 1, item: 'box 1' },
-    { key: 2, item: 'box 2' },
-    { key: 3, item: 'box 3' },
-    { key: 4, item: 'box 4' },
-    { key: 5, item: 'box 5' },
+  const [items, setItems] = useState<Item[]>([
+    { name: 'box 1' },
+    { name: 'box 2' },
+    { name: 'box 3' },
+    { name: 'box 4' },
+    { name: 'box 5' },
   ]);
   const [loading, setLoading] = useState(false);
+  const [currentItem, setCurrentItem] = useState<Item>({ name: '' });
 
   const onListRefresh = () => {
     setLoading(true);
-    setItems([...items, { key: 6, item: 'box 6' }]);
+    setItems([...items, { name: 'box 6' }]);
     setLoading(false);
   };
 
   return (
-    <ScrollView
-      style={styles.container}
-      refreshControl={
-        <RefreshControl refreshing={loading} onRefresh={onListRefresh} />
-      }
-    >
-      {items.map(el => (
-        <View style={styles.box} key={el.key}>
-          <Text>{el.item}</Text>
+    <FlatList
+      keyExtractor={(el, i) => i.toString()}
+      data={items}
+      refreshing={loading}
+      onRefresh={onListRefresh}
+      renderItem={({ item }) => (
+        <View style={styles.box}>
+          <Text>{item.name}</Text>
         </View>
-      ))}
-    </ScrollView>
+      )}
+    />
+    // <ScrollView
+    //   style={styles.container}
+    //   refreshControl={
+    //     <RefreshControl refreshing={loading} onRefresh={onListRefresh} />
+    //   }
+    // >
+
+    // </ScrollView>
   );
 }
 
