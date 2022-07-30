@@ -1,20 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, Linking, StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Text style={styles.text}>Hello world!</Text>
+      <Button
+        title="Visit achraf website"
+        onPress={() => Linking.openURL('https://achrafdev.com')}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#eee',
     alignItems: 'center',
     justifyContent: 'center',
+    flex: 1,
+  },
+  text: {
+    color: '#000',
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
   },
 });
