@@ -1,10 +1,18 @@
+import { useState } from 'react';
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function Input() {
+  const [name, setName] = useState<string>('');
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Please write your name:</Text>
-      <TextInput style={styles.input} placeholder="name" />
+      <TextInput
+        style={styles.input}
+        placeholder="e.g. John"
+        onChangeText={val => setName(val)}
+      />
+      <Text style={styles.text}>Your name is: {name}</Text>
     </View>
   );
 }
