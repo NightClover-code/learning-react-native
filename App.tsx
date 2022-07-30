@@ -1,58 +1,41 @@
-import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import {
+  RefreshControl,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 
 export default function App() {
+  const [items, setItems] = useState([
+    { key: 1, item: 'box 1' },
+    { key: 2, item: 'box 2' },
+    { key: 3, item: 'box 3' },
+    { key: 4, item: 'box 4' },
+    { key: 5, item: 'box 5' },
+  ]);
+  const [loading, setLoading] = useState(false);
+
+  const onListRefresh = () => {
+    setLoading(true);
+    setItems([...items, { key: 6, item: 'box 6' }]);
+    setLoading(false);
+  };
+
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar style="inverted" />
-
-      <View>
-        <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'stretch',
-          }}
-        >
-          <View
-            style={{
-              flexDirection: 'row',
-            }}
-          >
-            <View style={styles.box1}>
-              <Text style={styles.text}>1</Text>
-            </View>
-            <View style={styles.box2}>
-              <Text style={styles.text}>2</Text>
-            </View>
-          </View>
-          <View style={styles.box3}>
-            <Text style={styles.text}>3</Text>
-          </View>
+    <ScrollView
+      style={styles.container}
+      refreshControl={
+        <RefreshControl refreshing={loading} onRefresh={onListRefresh} />
+      }
+    >
+      {items.map(el => (
+        <View style={styles.box} key={el.key}>
+          <Text>{el.item}</Text>
         </View>
-
-        <View style={styles.box4}>
-          <Text style={styles.text}>4</Text>
-        </View>
-        <View style={styles.box5}>
-          <Text style={styles.text}>5</Text>
-        </View>
-      </View>
-
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'stretch',
-          flex: 1,
-        }}
-      >
-        <View style={styles.box6}>
-          <Text style={styles.text}>6</Text>
-        </View>
-        <View style={styles.box7}>
-          <Text style={styles.text}>7</Text>
-        </View>
-      </View>
-    </SafeAreaView>
+      ))}
+    </ScrollView>
   );
 }
 
@@ -66,42 +49,10 @@ const styles = StyleSheet.create({
     margin: 10,
     fontSize: 20,
   },
-  box1: {
-    flex: 1,
+  box: {
+    height: 200,
+    margin: 10,
     backgroundColor: 'red',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  box2: {
-    flex: 3,
-    backgroundColor: 'blue',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  box3: {
-    flex: 1,
-    backgroundColor: 'orange',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  box4: {
-    backgroundColor: 'purple',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  box5: {
-    flex: 1,
-    backgroundColor: 'magenta',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  box6: {
-    backgroundColor: 'cyan',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  box7: {
-    backgroundColor: 'green',
     alignItems: 'center',
     justifyContent: 'center',
   },
