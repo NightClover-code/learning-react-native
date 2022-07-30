@@ -1,7 +1,9 @@
+import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import {
   FlatList,
   RefreshControl,
+  SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
@@ -21,34 +23,31 @@ export default function App() {
     { name: 'box 5' },
   ]);
   const [loading, setLoading] = useState(false);
-  const [currentItem, setCurrentItem] = useState<Item>({ name: '' });
+  const [counter, setCounter] = useState<number>(items.length + 1);
 
   const onListRefresh = () => {
     setLoading(true);
-    setItems([...items, { name: 'box 6' }]);
+    setCounter(counter + 1);
+    setItems([...items, { name: `box ${counter}` }]);
     setLoading(false);
   };
 
   return (
-    <FlatList
-      keyExtractor={(el, i) => i.toString()}
-      data={items}
-      refreshing={loading}
-      onRefresh={onListRefresh}
-      renderItem={({ item }) => (
-        <View style={styles.box}>
-          <Text>{item.name}</Text>
-        </View>
-      )}
-    />
-    // <ScrollView
-    //   style={styles.container}
-    //   refreshControl={
-    //     <RefreshControl refreshing={loading} onRefresh={onListRefresh} />
-    //   }
-    // >
-
-    // </ScrollView>
+    <SafeAreaView>
+      <StatusBar style="auto" />
+      <FlatList
+        style={{ marginTop: 20 }}
+        keyExtractor={(el, i) => i.toString()}
+        data={items}
+        refreshing={loading}
+        onRefresh={onListRefresh}
+        renderItem={({ item }) => (
+          <View style={styles.box}>
+            <Text>{item.name}</Text>
+          </View>
+        )}
+      />
+    </SafeAreaView>
   );
 }
 
