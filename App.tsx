@@ -1,8 +1,8 @@
 import { StyleSheet } from 'react-native';
-import Input from './features/Input';
+import Touchable from './features/Touchable';
 
 export default function App() {
-  return <Input />;
+  return <Touchable />;
 }
 
 const styles = StyleSheet.create({
