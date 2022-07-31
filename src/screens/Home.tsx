@@ -2,6 +2,7 @@ import { StackScreenProps } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
 import { FC } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import GlobalStyle from '../components/GlobalStyle';
 import { RootStackParamList } from '../navigators/RootStack';
 
 type HomeProps = StackScreenProps<RootStackParamList, 'Home'>;
@@ -38,10 +39,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
-    fontFamily: 'Poppins-regular',
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
+    ...GlobalStyle.CustomFont,
   },
 });
 

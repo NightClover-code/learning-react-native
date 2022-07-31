@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { RootStackParamList } from '../navigators/RootStack';
 import CustomButton from '../components/CustomButton';
+import GlobalStyle from '../components/GlobalStyle';
 
 type LoginProps = StackScreenProps<RootStackParamList, 'Login'>;
 
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
-    fontFamily: 'Poppins-regular',
+    ...GlobalStyle.CustomFont,
   },
   input: {
     width: 250,

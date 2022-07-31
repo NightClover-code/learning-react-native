@@ -1,3 +1,4 @@
+import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
 import RootBottomTab from './src/navigators/RootTab';
 
@@ -8,7 +9,7 @@ export default function App() {
   });
 
   if (!fontsLoaded) {
-    return null;
+    return <AppLoading />;
   }
 
   return <RootBottomTab />;
