@@ -15,7 +15,7 @@ import CustomButton from '../components/CustomButton';
 
 type LoginProps = StackScreenProps<RootStackParamList, 'Login'>;
 
-const Login: FC<LoginProps> = ({ navigation }) => {
+const Login: FC<LoginProps> = ({ navigation, route }) => {
   const [name, setName] = useState<string>('');
   const [isLogged, setIsLogged] = useState<boolean>(false);
   const [showWarning, setWarning] = useState<boolean>(false);
@@ -29,7 +29,7 @@ const Login: FC<LoginProps> = ({ navigation }) => {
   };
 
   const onPressNavigateHandler = () => {
-    navigation.navigate('Home');
+    navigation.navigate('Home', { userName: name });
   };
 
   return (

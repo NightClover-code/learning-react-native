@@ -6,7 +6,9 @@ import { RootStackParamList } from '../navigators/RootStack';
 
 type HomeProps = StackScreenProps<RootStackParamList, 'Home'>;
 
-const Home: FC<HomeProps> = ({ navigation }) => {
+const Home: FC<HomeProps> = ({ navigation, route }) => {
+  const userName = route.params?.userName;
+
   const onPressNavigateHandler = () => {
     navigation.navigate('Login');
   };
@@ -15,7 +17,9 @@ const Home: FC<HomeProps> = ({ navigation }) => {
     <View style={styles.container}>
       <StatusBar style="dark" />
 
-      <Text style={styles.text}>Welcome to the React Native Tutorial!</Text>
+      <Text style={styles.text}>
+        Welcome to the React Native Tutorial {userName && userName}!
+      </Text>
 
       <Pressable onPress={onPressNavigateHandler}>
         <Text style={{ ...styles.text, color: 'blue' }}>Login</Text>
