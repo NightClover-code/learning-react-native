@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { FC, useState } from 'react';
+import { StackScreenProps } from '@react-navigation/stack';
 import {
   Image,
   Modal,
@@ -8,9 +10,12 @@ import {
   TextInput,
   View,
 } from 'react-native';
+import { RootStackParamList } from '../App';
 import CustomButton from '../src/components/CustomButton';
 
-export default function Login() {
+type LoginProps = StackScreenProps<RootStackParamList, 'Login'>;
+
+const Login: FC<LoginProps> = ({ navigation }) => {
   const [name, setName] = useState<string>('');
   const [isLogged, setIsLogged] = useState<boolean>(false);
   const [showWarning, setWarning] = useState<boolean>(false);
@@ -23,8 +28,13 @@ export default function Login() {
     }
   };
 
+  const onPressNavigateHandler = () => {
+    navigation.navigate('Home');
+  };
+
   return (
     <View style={styles.container}>
+      <StatusBar style="dark" />
       <Modal
         visible={showWarning}
         transparent
@@ -69,9 +79,13 @@ export default function Login() {
           source={require('../assets/error.png')}
         />
       )}
+
+      <Pressable onPress={onPressNavigateHandler}>
+        <Text style={styles.text}>Back to Home</Text>
+      </Pressable>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -125,3 +139,5 @@ const styles = StyleSheet.create({
     margin: 10,
   },
 });
+
+export default Login;

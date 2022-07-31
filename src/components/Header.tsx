@@ -11,6 +11,7 @@ const Header: FC = () => {
 
 const styles = StyleSheet.create({
   headerContainer: {
+    marginTop: 30,
     height: 50,
     backgroundColor: '#eee',
     justifyContent: 'center',

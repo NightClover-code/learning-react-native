@@ -1,21 +1,31 @@
-import { StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Home from './screens/Home';
 import Login from './screens/Login';
+import Header from './src/components/Header';
+
+export type RootStackParamList = {
+  Login: undefined;
+  Home: undefined;
+};
 
 export default function App() {
-  return <Login />;
-}
+  const Stack = createStackNavigator<RootStackParamList>();
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#eee',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-  },
-  text: {
-    color: '#000',
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-});
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{ header: () => <Header /> }}
+        />
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{ header: () => <Header /> }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
