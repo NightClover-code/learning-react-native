@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import CustomButton from '../components/CustomButton';
 
 export default function Login() {
   const [name, setName] = useState<string>('');
@@ -51,13 +52,7 @@ export default function Login() {
         placeholder="e.g. John"
         onChangeText={val => setName(val)}
       />
-      <TouchableOpacity
-        activeOpacity={0.8}
-        style={styles.button}
-        onPress={onPressHandler}
-      >
-        <Text style={styles.text}>{isLogged ? 'clear' : 'submit'}</Text>
-      </TouchableOpacity>
+      <CustomButton onPress={onPressHandler} isLogged={isLogged} />
 
       {isLogged ? (
         <>
@@ -105,7 +100,6 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   button: {
-    backgroundColor: 'orange',
     width: 200,
     color: 'white',
     borderRadius: 30,
