@@ -10,8 +10,8 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import { RootStackParamList } from '../App';
-import CustomButton from '../src/components/CustomButton';
+import { RootStackParamList } from '../navigators/RootStack';
+import CustomButton from '../components/CustomButton';
 
 type LoginProps = StackScreenProps<RootStackParamList, 'Login'>;
 
@@ -69,19 +69,19 @@ const Login: FC<LoginProps> = ({ navigation }) => {
           <Image
             resizeMode="stretch"
             style={styles.image}
-            source={require('../assets/done.png')}
+            source={require('../../assets/done.png')}
           />
         </>
       ) : (
         <Image
           resizeMode="stretch"
           style={styles.image}
-          source={require('../assets/error.png')}
+          source={require('../../assets/error.png')}
         />
       )}
 
       <Pressable onPress={onPressNavigateHandler}>
-        <Text style={styles.text}>Back to Home</Text>
+        <Text style={{ ...styles.text, color: 'blue' }}>Back to Home</Text>
       </Pressable>
     </View>
   );

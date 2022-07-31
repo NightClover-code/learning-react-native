@@ -1,7 +1,8 @@
 import { StackScreenProps } from '@react-navigation/stack';
+import { StatusBar } from 'expo-status-bar';
 import { FC } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { RootStackParamList } from '../App';
+import { RootStackParamList } from '../navigators/RootStack';
 
 type HomeProps = StackScreenProps<RootStackParamList, 'Home'>;
 
@@ -12,10 +13,12 @@ const Home: FC<HomeProps> = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <StatusBar style="dark" />
+
       <Text style={styles.text}>Welcome to the React Native Tutorial!</Text>
 
       <Pressable onPress={onPressNavigateHandler}>
-        <Text style={styles.text}>Login</Text>
+        <Text style={{ ...styles.text, color: 'blue' }}>Login</Text>
       </Pressable>
     </View>
   );
@@ -31,7 +34,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
-    color: '#000',
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
