@@ -8,7 +8,7 @@ import {
   TextInput,
   View,
 } from 'react-native';
-import CustomButton from '../components/CustomButton';
+import CustomButton from '../src/components/CustomButton';
 
 export default function Login() {
   const [name, setName] = useState<string>('');
