@@ -1,5 +1,12 @@
 import { useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import {
+  Button,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
 export default function Touchable() {
   const [name, setName] = useState<string>('');
@@ -19,7 +26,13 @@ export default function Touchable() {
         placeholder="e.g. John"
         onChangeText={val => setName(val)}
       />
-      <Button title={isLogged ? 'Clear' : 'submit'} onPress={onPressHandler} />
+      <TouchableOpacity
+        activeOpacity={0.8}
+        style={styles.button}
+        onPress={onPressHandler}
+      >
+        <Text style={styles.text}>{isLogged ? 'clear' : 'submit'}</Text>
+      </TouchableOpacity>
       {isLogged && (
         <Text style={styles.text}>You are registered as {name}</Text>
       )}
@@ -50,6 +63,12 @@ const styles = StyleSheet.create({
     borderColor: '#555',
     borderRadius: 5,
     paddingHorizontal: 5,
-    marginBottom: 10,
+    marginBottom: 15,
+  },
+  button: {
+    backgroundColor: 'orange',
+    width: 200,
+    color: 'white',
+    borderRadius: 30,
   },
 });
