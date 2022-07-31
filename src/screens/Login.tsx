@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
+    fontFamily: 'Poppins-regular',
   },
   input: {
     width: 250,

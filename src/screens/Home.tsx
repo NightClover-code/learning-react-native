@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
+    fontFamily: 'Poppins-regular',
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
