@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import {
+  Alert,
   Button,
   StyleSheet,
   Text,
@@ -13,8 +14,28 @@ export default function Touchable() {
   const [isLogged, setIsLogged] = useState<boolean>(false);
 
   const onPressHandler = () => {
-    if (name.length > 0) {
+    if (name.length > 2) {
       setIsLogged(!isLogged);
+    } else {
+      Alert.alert(
+        'Try again',
+        'The name must me at least 3 characters long',
+        [
+          {
+            text: 'Do not show again',
+            onPress: () => console.warn('Do not show again pressed'),
+          },
+          {
+            text: 'Cancel',
+            onPress: () => console.warn('Cancel pressed'),
+          },
+          {
+            text: 'Got it',
+            onPress: () => console.warn('Got it pressed'),
+          },
+        ],
+        { cancelable: true, onDismiss: () => console.warn('Alert dismissed!') }
+      );
     }
   };
 
