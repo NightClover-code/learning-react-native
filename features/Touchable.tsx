@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Text,
   TextInput,
+  ToastAndroid,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -17,24 +18,31 @@ export default function Touchable() {
     if (name.length > 2) {
       setIsLogged(!isLogged);
     } else {
-      Alert.alert(
-        'Try again',
-        'The name must me at least 3 characters long',
-        [
-          {
-            text: 'Do not show again',
-            onPress: () => console.warn('Do not show again pressed'),
-          },
-          {
-            text: 'Cancel',
-            onPress: () => console.warn('Cancel pressed'),
-          },
-          {
-            text: 'Got it',
-            onPress: () => console.warn('Got it pressed'),
-          },
-        ],
-        { cancelable: true, onDismiss: () => console.warn('Alert dismissed!') }
+      // Alert.alert(
+      //   'Try again',
+      //   'The name must me at least 3 characters long',
+      //   [
+      //     {
+      //       text: 'Do not show again',
+      //       onPress: () => console.warn('Do not show again pressed'),
+      //     },
+      //     {
+      //       text: 'Cancel',
+      //       onPress: () => console.warn('Cancel pressed'),
+      //     },
+      //     {
+      //       text: 'Got it',
+      //       onPress: () => console.warn('Got it pressed'),
+      //     },
+      //   ],
+      //   { cancelable: true, onDismiss: () => console.warn('Alert dismissed!') }
+      // );
+      ToastAndroid.showWithGravityAndOffset(
+        'The name must be longer than 3 characters',
+        ToastAndroid.LONG,
+        ToastAndroid.TOP,
+        0,
+        200
       );
     }
   };
