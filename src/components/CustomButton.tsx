@@ -2,20 +2,13 @@ import React, { FC } from 'react';
 import { Pressable, StyleSheet, Text } from 'react-native';
 
 interface Props {
-  isLogged: boolean;
   onPress: () => void;
 }
 
-const CustomButton: FC<Props> = ({ isLogged, onPress }) => {
+const CustomButton: FC<Props> = ({ onPress }) => {
   return (
-    <Pressable
-      style={() => [
-        { backgroundColor: isLogged ? 'red' : 'green' },
-        styles.button,
-      ]}
-      onPress={onPress}
-    >
-      <Text style={styles.text}>{isLogged ? 'clear' : 'submit'}</Text>
+    <Pressable style={styles.button} onPress={onPress}>
+      <Text style={styles.text}>Login</Text>
     </Pressable>
   );
 };
@@ -25,10 +18,11 @@ const styles = StyleSheet.create({
     width: 200,
     color: 'white',
     borderRadius: 30,
+    backgroundColor: 'orange',
   },
   text: {
-    color: '#000',
-    fontSize: 20,
+    color: 'white',
+    fontSize: 18,
     textAlign: 'center',
     margin: 10,
   },

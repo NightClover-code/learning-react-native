@@ -1,6 +1,6 @@
 import AppLoading from 'expo-app-loading';
 import { useFonts } from 'expo-font';
-import RootBottomTab from './src/navigators/RootTab';
+import RootStack from './src/navigators/RootStack';
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -12,5 +12,5 @@ export default function App() {
     return <AppLoading />;
   }
 
-  return <RootBottomTab />;
+  return <RootStack />;
 }

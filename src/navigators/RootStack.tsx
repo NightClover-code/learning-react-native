@@ -6,7 +6,7 @@ import Header from '../components/Header';
 
 export type RootStackParamList = {
   Login: undefined;
-  Home: { userName: string };
+  Home: undefined;
 };
 
 const Stack = createStackNavigator<RootStackParamList>();

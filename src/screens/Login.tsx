@@ -13,24 +13,24 @@ import {
 import { RootStackParamList } from '../navigators/RootStack';
 import CustomButton from '../components/CustomButton';
 import GlobalStyle from '../components/GlobalStyle';
+import { setAsyncUsername } from '../utils/async-storage';
 
 type LoginProps = StackScreenProps<RootStackParamList, 'Login'>;
 
-const Login: FC<LoginProps> = ({ navigation, route }) => {
+const Login: FC<LoginProps> = ({ navigation }) => {
   const [name, setName] = useState<string>('');
-  const [isLogged, setIsLogged] = useState<boolean>(false);
   const [showWarning, setWarning] = useState<boolean>(false);
 
   const onPressHandler = () => {
     if (name.length > 2) {
-      setIsLogged(!isLogged);
+      setAsyncUsername(navigation, name);
     } else {
       setWarning(true);
     }
   };
 
   const onPressNavigateHandler = () => {
-    navigation.navigate('Home', { userName: name });
+    navigation.navigate('Home');
   };
 
   return (
@@ -62,24 +62,7 @@ const Login: FC<LoginProps> = ({ navigation, route }) => {
         placeholder="e.g. John"
         onChangeText={val => setName(val)}
       />
-      <CustomButton onPress={onPressHandler} isLogged={isLogged} />
-
-      {isLogged ? (
-        <>
-          <Text style={styles.text}>You are logged in as {name}!</Text>
-          <Image
-            resizeMode="stretch"
-            style={styles.image}
-            source={require('../../assets/done.png')}
-          />
-        </>
-      ) : (
-        <Image
-          resizeMode="stretch"
-          style={styles.image}
-          source={require('../../assets/error.png')}
-        />
-      )}
+      <CustomButton onPress={onPressHandler} />
 
       <Pressable onPress={onPressNavigateHandler}>
         <Text style={{ ...styles.text, color: 'blue' }}>Back to Home</Text>
