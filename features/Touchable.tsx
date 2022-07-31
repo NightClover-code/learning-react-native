@@ -30,6 +30,8 @@ export default function Touchable() {
       <Modal
         visible={showWarning}
         transparent
+        animationType="fade"
+        hardwareAccelerated
         onRequestClose={() => setWarning(false)}
       >
         <View style={styles.warningModalContainer}>
@@ -38,7 +40,7 @@ export default function Touchable() {
               The name must be at least 3 chars long!
             </Text>
 
-            <Pressable>
+            <Pressable onPress={() => setWarning(false)}>
               <Text style={styles.text}>OK</Text>
             </Pressable>
           </View>
