@@ -1,18 +1,16 @@
 import { useState } from 'react';
 import {
-  Alert,
-  Button,
+  Image,
   Modal,
   Pressable,
   StyleSheet,
   Text,
   TextInput,
-  ToastAndroid,
   TouchableOpacity,
   View,
 } from 'react-native';
 
-export default function Touchable() {
+export default function Login() {
   const [name, setName] = useState<string>('');
   const [isLogged, setIsLogged] = useState<boolean>(false);
   const [showWarning, setWarning] = useState<boolean>(false);
@@ -60,8 +58,22 @@ export default function Touchable() {
       >
         <Text style={styles.text}>{isLogged ? 'clear' : 'submit'}</Text>
       </TouchableOpacity>
-      {isLogged && (
-        <Text style={styles.text}>You are registered as {name}</Text>
+
+      {isLogged ? (
+        <>
+          <Text style={styles.text}>You are logged in as {name}!</Text>
+          <Image
+            resizeMode="stretch"
+            style={styles.image}
+            source={require('../assets/done.png')}
+          />
+        </>
+      ) : (
+        <Image
+          resizeMode="stretch"
+          style={styles.image}
+          source={require('../assets/error.png')}
+        />
       )}
     </View>
   );
@@ -113,5 +125,10 @@ const styles = StyleSheet.create({
     borderColor: '#555',
     borderRadius: 5,
     justifyContent: 'center',
+  },
+  image: {
+    width: 100,
+    height: 100,
+    margin: 10,
   },
 });
