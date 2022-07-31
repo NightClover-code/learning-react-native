@@ -2,6 +2,8 @@ import { useState } from 'react';
 import {
   Alert,
   Button,
+  Modal,
+  Pressable,
   StyleSheet,
   Text,
   TextInput,
@@ -13,42 +15,36 @@ import {
 export default function Touchable() {
   const [name, setName] = useState<string>('');
   const [isLogged, setIsLogged] = useState<boolean>(false);
+  const [showWarning, setWarning] = useState<boolean>(false);
 
   const onPressHandler = () => {
     if (name.length > 2) {
       setIsLogged(!isLogged);
     } else {
-      // Alert.alert(
-      //   'Try again',
-      //   'The name must me at least 3 characters long',
-      //   [
-      //     {
-      //       text: 'Do not show again',
-      //       onPress: () => console.warn('Do not show again pressed'),
-      //     },
-      //     {
-      //       text: 'Cancel',
-      //       onPress: () => console.warn('Cancel pressed'),
-      //     },
-      //     {
-      //       text: 'Got it',
-      //       onPress: () => console.warn('Got it pressed'),
-      //     },
-      //   ],
-      //   { cancelable: true, onDismiss: () => console.warn('Alert dismissed!') }
-      // );
-      ToastAndroid.showWithGravityAndOffset(
-        'The name must be longer than 3 characters',
-        ToastAndroid.LONG,
-        ToastAndroid.TOP,
-        0,
-        200
-      );
+      setWarning(true);
     }
   };
 
   return (
     <View style={styles.container}>
+      <Modal
+        visible={showWarning}
+        transparent
+        onRequestClose={() => setWarning(false)}
+      >
+        <View style={styles.warningModalContainer}>
+          <View style={styles.warningModal}>
+            <Text style={styles.text}>
+              The name must be at least 3 chars long!
+            </Text>
+
+            <Pressable>
+              <Text style={styles.text}>OK</Text>
+            </Pressable>
+          </View>
+        </View>
+      </Modal>
+
       <Text style={styles.text}>Please write your name:</Text>
       <TextInput
         style={styles.input}
@@ -99,5 +95,21 @@ const styles = StyleSheet.create({
     width: 200,
     color: 'white',
     borderRadius: 30,
+  },
+  warningModalContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#00000099',
+  },
+  warningModal: {
+    width: 300,
+    height: 300,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#555',
+    borderRadius: 5,
+    justifyContent: 'center',
   },
 });
